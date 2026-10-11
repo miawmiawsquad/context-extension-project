@@ -19,6 +19,18 @@ holds tasks, links, and saved tabs — all stored locally, no backend, no sign-i
 Manifest V3 · React · TypeScript · Vite · `chrome.storage.local` · `chrome.tabs`
 No backend, no auth, no external APIs.
 
+## Install (no build needed)
+
+1. Download `context-extension-v1.0.0.zip` from the
+   [latest release](https://github.com/miawmiawsquad/context-extension-project/releases/latest).
+2. Extract the zip — you get a `context-extension-v1.0.0` folder.
+3. Open `chrome://extensions` and enable **Developer mode** (top-right toggle).
+4. Click **Load unpacked** and select the extracted folder.
+5. Pin **Context** from the extensions menu and click it to open the popup.
+
+Works in Chrome and other Chromium browsers (Edge, Brave, Arc). Keep the
+extracted folder in place — the browser loads the extension from it.
+
 ## Develop
 
 ```bash
