@@ -1,0 +1,757 @@
+/* ==========================================================================
+   Context — design system
+   Calm, minimal, editorial. A small premium Mac utility, not a dashboard.
+   ========================================================================== */
+
+:root {
+  /* Surfaces */
+  --bg: #ffffff;
+  --surface: #f7f7f7;
+  --surface-hover: #f7f7f7;
+  --surface-active: #efefef;
+
+  /* Text */
+  --text: #111111;
+  --text-secondary: #6b6b6b;
+  --text-muted: #999999;
+
+  /* Borders */
+  --border: #eaeaea;
+  --border-strong: #dcdcdc;
+
+  /* Accent — a restrained near-black, never a SaaS blue/purple */
+  --accent: #111111;
+  --accent-contrast: #ffffff;
+
+  /* Feedback */
+  --success: #1f9d55;
+  --danger: #d64545;
+
+  /* Radii — small to medium */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+
+  /* Shadows — barely there */
+  --shadow-sm: 0 1px 2px rgba(17, 17, 17, 0.04);
+  --shadow-md: 0 6px 20px rgba(17, 17, 17, 0.08);
+
+  /* Motion */
+  --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+  --dur: 130ms;
+
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 400px;
+  min-height: 200px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter",
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: -0.006em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  width: 400px;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+input {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ccc;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ==========================================================================
+   Layout
+   ========================================================================== */
+
+.app {
+  display: flex;
+  flex-direction: column;
+  max-height: 560px;
+  min-height: 300px;
+}
+
+.app__header {
+  padding: 14px 16px 12px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 2;
+}
+
+.app__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 10px 16px;
+}
+
+/* ==========================================================================
+   Brand / wordmark
+   ========================================================================== */
+
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.brand__mark {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand__logo {
+  width: 19px;
+  height: 19px;
+  border-radius: 5px;
+  flex-shrink: 0;
+}
+
+.brand__name {
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg);
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  padding: 6px 11px;
+  font-weight: 500;
+  transition: background var(--dur) var(--ease),
+    border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.btn:hover {
+  background: var(--surface);
+  border-color: var(--border-strong);
+}
+.btn:active {
+  transform: scale(0.985);
+  background: var(--surface-active);
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border-color: var(--accent);
+}
+.btn--primary:hover {
+  background: #000;
+  border-color: #000;
+}
+
+/* Compact "+ Add" project button in the header (top-right). */
+.btn--add {
+  height: 33px;
+  padding: 0 13px;
+  gap: 5px;
+  border-radius: var(--radius-lg);
+  font-weight: 500;
+}
+/* Keep the "+" visually smaller/quieter than the "Add" label. */
+.btn--add svg {
+  opacity: 0.85;
+}
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.18);
+}
+
+.btn--block {
+  width: 100%;
+}
+
+.btn--ghost {
+  border-color: transparent;
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 6px 8px;
+}
+.btn--ghost:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.btn--subtle {
+  border-style: dashed;
+  border-color: var(--border-strong);
+  color: var(--text-secondary);
+  background: var(--bg);
+  font-weight: 500;
+}
+.btn--subtle:hover {
+  color: var(--text);
+  background: var(--surface);
+  border-style: solid;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+.icon-btn:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+.icon-btn:active {
+  transform: scale(0.92);
+}
+.icon-btn--danger:hover {
+  color: var(--danger);
+}
+.icon-btn--active {
+  color: var(--accent);
+}
+
+/* ==========================================================================
+   Inputs & search
+   ========================================================================== */
+
+.input {
+  width: 100%;
+  border: 1px solid var(--border-strong);
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  padding: 7px 10px;
+  color: var(--text);
+  transition: border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+.input::placeholder {
+  color: var(--text-muted);
+}
+.input:focus {
+  outline: none;
+  border-color: var(--text-secondary);
+  box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.06);
+}
+
+.search {
+  position: relative;
+}
+.search__icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+  transition: color var(--dur) var(--ease);
+  display: inline-flex;
+}
+.search:focus-within .search__icon {
+  color: var(--text-secondary);
+}
+.search .input {
+  padding-left: 31px;
+  padding-right: 40px;
+}
+.search__kbd {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 11px;
+  line-height: 1;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 3px 5px;
+  background: var(--bg);
+  pointer-events: none;
+  font-variant-numeric: tabular-nums;
+  transition: opacity var(--dur) var(--ease);
+}
+.search:focus-within .search__kbd {
+  opacity: 0;
+}
+.search__clear {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* ==========================================================================
+   Section headers
+   ========================================================================== */
+
+.section {
+  margin-top: 20px;
+}
+.section:first-child {
+  margin-top: 6px;
+}
+.section__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px 8px;
+}
+.section__title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+.section__count {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ==========================================================================
+   Project list — a lightweight editorial list, not cards
+   ========================================================================== */
+
+.project-list {
+  margin-top: 2px;
+}
+
+.project-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-md);
+  padding: 9px 12px;
+  transition: background var(--dur) var(--ease);
+}
+.project-row:hover {
+  background: var(--surface);
+}
+.project-row:active {
+  background: var(--surface-active);
+}
+
+.project-row__main {
+  flex: 1;
+  min-width: 0;
+}
+.project-row__name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.project-row__meta {
+  margin-top: 1px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.project-row__meta--muted {
+  color: var(--text-muted);
+}
+
+.project-row__right {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+.project-row__pct {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  min-width: 34px;
+  text-align: right;
+}
+.project-row__pct--complete {
+  color: var(--success);
+}
+
+/* Pin only appears on hover / when active, so the list stays quiet */
+.project-row__pin {
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease), color var(--dur) var(--ease),
+    background var(--dur) var(--ease);
+}
+.project-row:hover .project-row__pin,
+.project-row__pin.icon-btn--active {
+  opacity: 1;
+}
+
+.pin-dot {
+  color: var(--accent);
+  flex-shrink: 0;
+  display: inline-flex;
+}
+
+/* ==========================================================================
+   Progress
+   ========================================================================== */
+
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.progress__track {
+  flex: 1;
+  height: 5px;
+  background: var(--surface-active);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.progress__fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 999px;
+  transition: width 260ms var(--ease);
+}
+.progress__label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Rows (tasks, links, tabs)
+   ========================================================================== */
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  transition: background var(--dur) var(--ease);
+}
+.row:hover {
+  background: var(--surface);
+}
+.row__main {
+  flex: 1;
+  min-width: 0;
+}
+.row__title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text);
+  transition: color var(--dur) var(--ease);
+}
+.row__sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.row__actions {
+  display: flex;
+  gap: 2px;
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease);
+}
+.row:hover .row__actions,
+.row:focus-within .row__actions {
+  opacity: 1;
+}
+
+/* Task checkbox with a smooth check-in animation */
+.check {
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  border: 1.5px solid var(--border-strong);
+  background: var(--bg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-contrast);
+  flex-shrink: 0;
+  padding: 0;
+  transition: background 160ms var(--ease), border-color 160ms var(--ease);
+}
+.check:hover {
+  border-color: var(--text-secondary);
+}
+.check--done {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.check svg {
+  transform: scale(0.5);
+  opacity: 0;
+  transition: transform 180ms var(--ease), opacity 130ms var(--ease);
+}
+.check--done svg {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.row__title--done {
+  color: var(--text-muted);
+  text-decoration: line-through;
+  text-decoration-color: var(--border-strong);
+}
+
+/* Clickable link/tab rows */
+.row--link {
+  cursor: pointer;
+}
+
+.favicon {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  object-fit: contain;
+  background: var(--surface);
+}
+.favicon--fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+}
+
+/* ==========================================================================
+   Inline add forms
+   ========================================================================== */
+
+.add-form {
+  display: flex;
+  gap: 6px;
+  padding: 6px 6px 0;
+}
+.add-form .input {
+  flex: 1;
+}
+.add-form--stack {
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   Empty states — typography & spacing, no illustrations
+   ========================================================================== */
+
+.empty {
+  text-align: center;
+  padding: 40px 24px;
+  color: var(--text-muted);
+}
+.empty__title {
+  color: var(--text);
+  font-weight: 600;
+  font-size: 13.5px;
+  margin-bottom: 5px;
+  letter-spacing: -0.01em;
+}
+.empty__hint {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  max-width: 260px;
+  margin: 0 auto 16px;
+  line-height: 1.55;
+}
+.empty__hint:last-child {
+  margin-bottom: 0;
+}
+
+.list-empty {
+  padding: 10px 10px 6px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Project detail
+   ========================================================================== */
+
+.detail__top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.detail__title-wrap {
+  flex: 1;
+  min-width: 0;
+}
+.detail__title {
+  font-size: 17px;
+  font-weight: 650;
+  letter-spacing: -0.025em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: 2px 6px;
+  margin: -2px -6px;
+  width: 100%;
+  background: transparent;
+  color: var(--text);
+}
+.detail__title:hover {
+  background: var(--surface);
+}
+.detail__title:focus {
+  outline: none;
+  background: var(--bg);
+  border-color: var(--border-strong);
+  box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.06);
+}
+
+.detail__progress {
+  padding: 0 6px 4px;
+}
+
+/* ==========================================================================
+   Search results
+   ========================================================================== */
+
+.result {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  transition: background var(--dur) var(--ease);
+}
+.result:hover {
+  background: var(--surface);
+}
+.result__badge {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 6px;
+  flex-shrink: 0;
+  min-width: 52px;
+  text-align: center;
+}
+.result__main {
+  flex: 1;
+  min-width: 0;
+}
+.result__label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text);
+}
+.result__project {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Utility
+   ========================================================================== */
+
+.stack-gap > * + * {
+  margin-top: 1px;
+}
+.muted {
+  color: var(--text-muted);
+}
+
+.fade-in {
+  animation: fade-in 160ms var(--ease);
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

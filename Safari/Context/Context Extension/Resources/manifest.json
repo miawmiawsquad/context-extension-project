@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Context",
+  "version": "1.0.0",
+  "description": "Keep every project in context. A lightweight workspace for projects, tasks, links, and saved tabs.",
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Context"
+  },
+  "permissions": ["storage", "activeTab"],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
